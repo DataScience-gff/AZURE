@@ -1,0 +1,2317 @@
+---
+title: Azure
+subtitle: Arquitectura y Servicios de Microsoft Azure
+format: clean-revealjs
+execute: 
+  echo: true
+  output: true
+code-fold: false
+code-overflow: wrap
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Grupo Financiero Ficohsa 
+    affiliations: Data Science
+date: last-modified
+html: 
+  toc: true
+  code-fold: show
+---
+
+# Servicio de almacenamiento Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig1.png){width="250"}
+:::
+
+::: {.column style="font-size:15px"}
+Este capitulo proporciona una breve visión general de la arquitectura y los servicios de Azure, centrandose posteriormente en los servicios de almacenamiento disponibles en la nube de Azure.
+:::
+:::::
+
+## Visión general de la arquitectura y los servicios de Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+**¿Qué es Azure?**
+
+Azure es la plataforma en la nube de Microsoft, que ofrece una gamma de servicios, como ser:
+
+-   Almacenamiento (Storage)
+
+-   Computación (Computing)
+
+-   Redes (Networking)
+
+-   Aplicaciones (Applications)
+
+Por nombrar algunos de esos servicios.
+
+En lugar de depender de su propia computadora o servidores, Azure le permite utilizar la infraestructura proporcionada por Microsoft a través de internet. Es una forma de acceder y utilizar recursos informáticos sin administrar su propio hardware físico.
+
+**¿Qué puede hacer con Azure?**
+
+Azure ofrece una gamma amplia de servicios para almacenar datos y ejecutar máquinas virtuales:
+
+-   Almacenar data (Store data)
+
+-   Ejecución de maquinas virtuales (Running virtual machines)
+
+-   Alojamiento de sitios web y aplicaciones
+
+-   Machine Learning
+
+-   Servicios de bases de datos y muchos más.
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig2.png){fig-align="center" width="150"}
+
+### **Diseño Arquitectónico de Azure**
+
+La infraestructura física de Azure consta de una red global de centros de datos ubicados en todo el mundo.
+
+![](img/fig3.png){width="420" height="180"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+-   Cada uno de estos centros de datos está equipado con hardware de computación, almacenamiento y redes.\
+    -   Los centros de datos se agrupan en regiones o zonas de disponibilidad diseñadas para garantizar redundancias, escalabilidad y alta disponibilidad de los servicios.\
+    -   Microsoft mantiene y administra estos centros de datos, mientras los clientes acceden a los servicios de Azure a través de internet.
+-   **Regiones**\
+    ![](img/fig4.png){width="350"}\
+    \
+    -   Una región de Azure es un área geográfica que contiene un grupo de centros de datos que ofrecen servicios de Azure.\
+    -   Un centro de datos es una instalación física utilizada para almacenar computadoras y otros componentes cuyo propósito es almacenar, procesar y gestionar grandes cantidades de datos.\
+    -   Las regiones están ubicadas estratégicamente a nivel mundial, lo que permite la creación de recursos de proximidad a los consumidores de servicios alojados en la nube. Por lo tanto, ofrecen un mejor rendimiento y cumplimiento de las normativas locales.\
+    -   Cuando se cea un recurso en Azure, normalmente se debe designar la región donde se implementará el recurso.
+:::
+
+::: {.column style="font-size:15px"}
+-   **Zonas de disponibilidad**\
+    \
+    ![](img/fig5.png){width="400"}\
+    Las zonas de disponibilidad de Azure son centros de datos separados y físicamente independientes dentro de una región. Aseguran que si algo sale mal en su zona, todavia puede acceder a las aplicaciones y a los datos desde otra zona. Es una forma de garantizar que los servicios de Azure permanezcan disponibles incluso si hay problemas técnicos en una ubicación.
+
+-   **Portal Azure**\
+    \
+
+    -   Azure ofrece un sitio web fácil de usar donde puede acceder, administrar y controlar fácilmente los recursos de la nube.\
+    -   Se llama `Portal Azure o Azure Portal` y te ayuda a organizar, supervisar, manejar todos tus servicios y datos en la nube de una manera fácil y eficiente.\
+        ![](img/fig6.png){width="360"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+-   **Recursos\
+    \
+    **Los recurso son los componentes básicos que se utilizan para crear y ejecutar operaciones en la nube de Azure.\
+    ![](img/fig7.png){width="300"}\
+    \
+    Podría ser:\
+    -   Un sitio web (Website).\
+    -   Una base de datos (Database).\
+    -   Una maquina virtual (Virtual Machine).\
+    -   U otras herramientas que faciliten las actividades en línea.\
+        \
+        Cuando creas un recurso, debes asignarlo a un grupo de recursos.
+-   **Grupos de Recursos\
+    \
+    **Los grupos de recursos son como carpetas virtuales para organizar recursos. Proporcionan una forma sencilla de agrupar recursos en la nube.\
+    \
+    -   Cada recurso pertenece a un solo grupo a la vez, pero se pueden mover entre grupos de recursos si es necesario.\
+    -   Los grupos de recursos no se pueden anidar, por lo que no se puede colocar uno dentro de otro.
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig8.png){fig-align="left" width="200"}
+
+-   **Suscripciones\
+    \
+    **Así como los grupos de recursos ayudan a organizar recursos, las suscripciones le permiten organizar sus grupos de recursos y simplificar el proceso de facturación.\
+    ![](img/fig9.png){fig-align="center" width="159"}\
+    Una `suscripció a Azure` es como una membresía que le brinda acceso a servicios en la nube. Tener varias suscripciones de Azure puede servir para propósitos como:\
+
+    -   Seguridad, gestión de costos o separación de múltiples entornos.
+
+    \
+    Cada suscripción esta vinculada a una cuenta de Azure.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+-   **Cuenta de Azure\
+    \
+    **![](img/fig10.png){width="250"}\
+    \
+    Una cuenta de Azure es el pase de acceso a los servicios en la nube de Microsoft. Le permite utilizar y administrar todas las herramientas y recursos proporcionados por Azure.\
+    -   Para comenzar a utilizar los servicios de Azure, primero debe crear una cuenta de Azure.
+-   **Grupos de Administración**\
+    \
+    Los grupos de administración de Azure son una capa opcional que puede ayudarlo a organizar y controlar varias suscripciones a la vez.\
+    -   A diferencia de las otras estructuras organizativas de las que hemos hablado anteriormente, los grupos de administración eran los únicos que se podían anidar. Esto significa que puedes colocar un grupo de administración dentro de otro, creando una relación *padre-hijo.*
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig11.png){width="200"}
+
+#### Resumen estructura jerárquica de Azure
+
+![](img/fig12.png){width="250"}
+
+-   Para crear recursos en Azure necesitamos colocarlos en un grupo de recursos.
+
+-   Los grupos de recursos se organizan bajo suscripciones, para mayor seguridad y separación de facturación.
+
+-   Opcionalmente, las suscripciones se pueden colocar bajo grupos de administración, para una más fácil organización y control.
+
+-   Todo lo anterior lo podemos lograr solo teniendo una cuenta de Azure que nos permita utilizar los servicios de Azure.
+:::
+:::::
+
+## Servicios de almacenamiento Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Algunos servicios son cruciales para una amplia gamma de escenarios y el almacenamiento de Azure es uno de ellos.
+
+**¿Qué es el servicio de almacenamiento de Azure?**
+
+![](img/fig13.png)
+
+-   Los servicios de almacenamiento de Azure son un conjunto de soluciones de almacenamiento en la nube proporcionadas por Azure.
+
+-   Estos servicios ofrecen opciones de almacenamiento seguro para varios tipos de datos, desde texto simple hasta archivos multimedia e incluso grandes bases de datos.
+
+-   Permiten a los usuarios almacenar, recuperar y administrar datos en Azure.
+
+-   Proporcionando flexibilidad y escalabilidad para satisfacer diversas necesidades de almacenamiento.
+
+La plataforma de almacenamiento de Azure incluye los siguientes servicios de datos que examinaremos con mayor detalle:
+
+1.  Blobs
+
+2.  Archivos (File)
+
+3.  Colas (Queues)
+
+4.  Tablas (Tables)
+
+5.  Discos (Disks)
+:::
+
+::: {.column style="font-size:15px"}
+![](img/Fig14.png)
+
+### Cuenta de almacenamiento (Storage Account)
+
+A diferencia de los Disks, todos los demás servicios requieren configurar una cuenta de almacenamiento para comenzar a usarlos.
+
+![](img/fig15.png){width="350"}
+
+-   Una **cuenta de almacenamiento** es como un contenedor virtual para sus datos. Proporcionando formas de organizar, acceder y proteger sus datos en la nube de Azure.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+**Blobs**
+
+![](img/fig16.png){width="157"}
+
+-   Los blobs, u objetos binarios grandes, están diseñados para almacenar grandes cantidades de datos no estructurados, como documentos, imagenes, videos y otros.
+
+-   Para proporcionar contexto, es importante tener en cuenta que los datos no estructurados carecen de un dato específico, estructura, a diferencia de los datos estructurados, como las bases de datos, que están organizados con un formato claro.
+
+-   El servicio Blob es una de las características más importantes que se encuentran en las cuentas de almacenamiento.
+
+-   Azure gestiona las necesidades de almacenamiento físico de los blobs, liberando a los usuarios de la necesidad de considerar o administrar discos.
+:::
+
+::: {.column style="font-size:15px"}
+**Cuando usar blobs?**
+
+El almacenamiento de blobs es adecuado para:
+
+-   Almacenamiento de archivos para acceso generalizado.
+
+-   Transmisión de contenidos de vídeos y audio.
+
+-   Almacenamiento de datos para copia de seguridad, recuperación ante desastres y archivado.
+
+-   Entrega directa de imágenes o documentos a la web.
+
+**Niveles de almacenamiento de Blob**
+
+Ciertos datos requieren acceso inmediato, lo que implica mayores costos, mientras que otros datos puede tolerar retrasos entre la solicitud y la entrega.
+
+Azure proporciona cuatro niveles de acceso diferentes para el almacenamiento de blobs para optimizar costos:
+
+1.  **Nivel de acceso frecuente**, es mejor para datos a los que se accede con frecuencia, como imagenes en un sitio web.
+
+2.  **Nivel de acceso frio,** es ideal para datos a los que se accede con poca frecuencia, como las facturas de clientes.
+
+3.  **Nivel de acceso inactivo**, es ideal para datos a los que se accede con poca frecuencia, como copias de seguridad a corto plazo.
+
+4.  **Nivel de acceso al archivo**, está diseñado para archivar, como ser, copias de seguridad a largo plazo.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+**Archivos (File)**
+
+![](img/fig17.png){width="250"}
+
+El servicio de archivos de Azure proporciona espacios de archivos organizados en la nube, de los cuales:
+
+-   Se puede acceder facilmente desde varios dispositivos, incluidos sistemas locales y en la nube.
+
+-   Una vez conectado a la nube de Azure, se puede acceder a los archivos desde la mayoria de los sistemas operativos, incluidos Windows, Linux y macOS.
+
+**¿Cuando usar File?**
+
+Podría considerar usar archivos de Azure para:
+
+-   Se requiere una solución de almacenamiento para múltiples usuarios o aplicaciones.
+
+-   La capacidad de acceder a archivos de varios sistemas operativos, cuando se necesita accesos multiplataforma.
+
+-   Necesita una ubicación en la nube centralizada para la colaboración de archivos.
+:::
+
+::: {.column style="font-size:15px"}
+-   Necesita compartir datos de la aplicación entre diferentes instancias o componentes de una aplicación.
+
+**Almacenamiento en Cola (Queues)**
+
+![](img/fig18.png){width="200"}
+
+El almacenamiento en cola es un servicio de mensajes digitales en la nube.
+
+Este sistema de mensajería permite la comunicación entre varios componentes, programas o aplicaciones, ayudándolas a trabajar juntas de manera eficiente compartiendo información e instrucciones.
+
+Estos mensajes se almacenan, creando básicamente una cola de instrucciones de trabajo.
+
+Por lo general, los servicios de cola se implementan en flujos de trabajo que contienen varios otros servicios.
+
+### Como funcionan las colas
+
+Por lo general, los servicios de cola se implemenan en flujos de trabajo que contienen varios otros servicios.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+\
+Imagínese que es Blac Friday y muchas personas están haciendo pedidos de una computadora portátil con descuento en una tienda en línea.
+
+Incluso si los pedidos llegan simultáneamente, no se pueden procesar todos a la vez. En lugar de eso, les ponen en fila en una cola. Esta cola garantiza que un sistema automatizado procese cada pedido correctamente, evitando la pérdida de información, especialmente durante épocas de mucha actividad como las compras del viernes negro.
+
+![](img/fig19.png)
+
+**Tablas (Tables)**
+
+![](img/fig20.png){width="200"}
+
+El servicio de tablas es un almacén de datos NoSQL que se encuentra en cuentas de almacenamiento.
+:::
+
+::: {.column style="font-size:15px"}
+-   Le permite almacenar y recuperar datos de una manera flexible y sin esquema.
+
+-   Adecuado para el acceso rápido y escalable a grandes cantidades de datos no estructurados. Por su relación **costo-beneficio** y su sencilla gestión.
+
+En ocasiones se prefieren a servicios de bases de datos más complejos.
+
+**Discos (Disks)**
+
+![](img/fig21.png){width="200"}
+
+Los discos de Azure, también conocidos como discos administrados de Azure, proporcionan almacenamiento persistente escalable y seguro para máquinas virtuales.
+
+Son similares a los discos duros normales pero en forma virtual.
+
+Le permite adjuntar volúmenes de disco a sus maquinas virtuales, proporcionándoles el espacio de almacenamiento necesario para sistemas operativos, aplicaciones y datos.
+
+Los discos de Azure juegan un papel crucial en la funcionalidad de las máquinas virtuales y los exploraremos más a fondo en los próximos capítulos.
+:::
+:::::
+
+## Configuración de almacenamiento y gestión de archivos
+
+::::: columns
+::: {.column style="font-size:15px"}
+Exploremos la opciones de almacenamiento para la configuración y las operaciones de archivos.
+
+#### Redundancia de almacenamiento (Storage redundancy)
+
+![](img/fig22.png){width="200" height="170"}
+
+La redundancia de almacenamiento se refiere a la práctica de duplicar o replicar datos en múltiples ubicaciones o dispositivos dentro de un sistema de almacenamiento.
+
+Así como valoras las fotos familiares, es aconsejable tener varias copias almacenadas en diferentes dispositivos para evitar posibles pérdidas.
+
+El almacenamiento de Azure conserva varias copias de sus datos para protegerlos de ataques esperados y no esperados, eventos inesperados como problemas de hardware, interrupciones de energía y desastres naturales.
+
+Esta redundancia garantiza que sus datos estén disponibles incluso durante fallas.
+:::
+
+::: {.column style="font-size:15px"}
+#### Almacenamiento redundante local (LRS)
+
+![](img/fig23.png){width="200"}
+
+El almacenamiento redundante local replica los datos tres veces en un solo conjunto de datos, dentro de la región primaria, proporcionando un costo eficiente pero menos protección.
+
+La región principal es la región donde se creó la cuenta de almacenamiento. En caso de desastres como incendios o inundaciones en el centro de datos, se pueden perder todas las copias de dato.
+
+Para una mayor protección, `la zona redundante`, replica sus datos de almacenamiento en tres zonas de disponibilidad en la región principal.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig24.png){width="250"}
+
+Los datos permanecen accesibles tanto para operaciones de lectura como de escritura incluso si una zona deja de estar disponible, no se requieren acciones adicionales.
+
+#### Región Secundaria (GRS)
+
+Para mayor protección, puede optar por replicar sus datos en una región secundaria.
+
+![](img/fig25.png){width="250"}
+
+Cuando se copia una región secundaria, los datos permanecen seguros incluso, cuando una falla catastrófica impide la recuperación en la región primaria.
+:::
+
+::: {.column style="font-size:15px"}
+El almacenamiento `georredundante` es como usar almacenamiento redundante localmente en dos regiones, con datos que tienen tres copias en un centro de datos para cada región.
+
+El almacenamiento con redundancia geográfica ofrece la ventaja de alta disponibilidad y redundancia entre zonas y protección contra cortes regionales.
+
+![](img/fig26.png){width="300"}
+
+Los datos se copian en tres zonas de disponibilidad en la región principal y también se replican en la región secundaria. Es la elección óptima para lograr lo mejor, disponibilidad, excelente rendimiento y resilencia para la recuperación ante desastres.
+
+#### Jerarquía de Redundancia
+
+Repasemos visualmente una vez más las opciones de redundancia en Azure, desde la menos protectora hasta la más segura.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig27.png){width="300"}
+
+Ahora que comprende las distintas opciones de almacenamiento en Azure, es fundamental saber como llevar sus datos e información a Azure.
+
+#### Opciones de migración de datos
+
+![](img/fig28.png)
+
+Azure admite el traslado de infraestructura, aplicaciones y datos en tiempo real, esto con `Azure Migrate (real-time)`, pero también una opción más convencional utilizando `Azure Data Box (conventional)`.
+:::
+
+::: {.column style="font-size:15px"}
+#### Azure Migrate
+
+![](img/fig29.png)
+
+Azure Migrate, es un servicio que actúa como un centro central para simplificar la migración desde las instalaciones locales a la nube. Ofrece una variedad de herramientas para evaluar y migrar datos, cubriendo máquinas virtuales, aplicaciones web, bases de datos y otros datos.
+
+Esto es particularmente útil para las empresas que buscan trasladar sus datos a la nube de Azure.
+
+#### Azure Data Box
+
+![](img/fig30.png)
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Para las empresas con grandes volúmenes de datos, especialmente bases de datos, la migración en línea puede no ser ideal.
+
+En tales casos, considere usar Azure Data Box, un servicio de migración física.
+
+**Azure Data Box**, es un dispositivo de hardware con numerosas unidades de almacenamiento. Azure envía la caja a su ubicación, usted copia los datos en ella y luego la envía de regreso. Una vez completado el proceso, Azure garantiza que sus datos se restauren en su centro de datos y estén listos para su uso posterior.
+
+#### Operaciones de Archivos
+
+![](img/fig31.png){width="400"}
+
+Además de las migraciones a gran escala, Azure también proporciona herramientas específicamente, diseñadas para mover o interacturar con archivos individuales o pequeños grupos de archivos.
+
+**AzCopy:** es una herramienta de línea de comandos que facilita la carga de archivos, descargas y copias entre cuentas de almacenamiento y fuentes locales. AzCopy se puede configurar para funcionar con otros servicios en la nube, proveedores, siendo especialmente útiles para el movimiento de archivos entre nubes.
+:::
+
+::: {.column style="font-size:15px"}
+**Azure Storage Explorer:** es un aplicación que ofrece una interfaz gráfica para manejar archivos y blobs en cuentas de almacenamiento de Azure.
+
+![](img/fig32.png){width="600"}
+
+Proporciona la misma funcionalidad que AzCopy, con la comodidad adicional de una interfaz fácil de usar.
+
+**Azure File Sync**: es un servicio que puede sincronizar archivos entre diferentes computadoras y la nube de Azure. Asegura que los archivos más recientes sean accesibles desde cualquier ubicación.
+
+![](img/fig33.png){width="142"}
+:::
+:::::
+
+# Servicios Informáticos y de Red
+
+::::: columns
+::: {.column style="font-size:15px"}
+Este capítulo ofrece una visión general de los servicios informáticos de Azure Cloud, explorando co más detalle las maquinas virtuales, los componentes de red y los servicios de aplicaciones.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Explorar los servicios informáticos de Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Exploraremos los servicios informáticos de Azure.
+
+![](img/fig34.png){width="250"}
+
+Los servicios de cómputo en Azure hacen referencia a una variedad de recursos y servicioes que permiten el procesamiento, ejecución de aplicaciones y carga de trabajo en la nube Azure.
+
+Estos servicios proporcionan la potencia informática necesaria para ejecutar aplicaciones, procesar datos y realizar diversas tareas.
+
+Según el método en el que se le presta el servicio a usted como cliente, los servicios computacionales se dividen en las siguientes categorías principales:
+:::
+
+::: {.column style="font-size:15px"}
+-   Infraestructura como servicio.
+
+-   Plataforma como servicio
+
+-   Sin servidor.
+
+Hechemos un vistazo a cada categoría con más detalle.
+
+#### Infraestructura como servicio (IaaS)
+
+![](img/fig35.png){width="554"}
+
+`La infraestructura como servicio` es una categoría de computación en la nube que proporcionan recursos informáticos virtualizados a través de internet.
+
+-   Es uno de los modelos fundamentales en la nube de Azure, ofreciendo una alternativa flexible y escalable a la infraestructura local tradicional.
+
+-   Los servicios más utilizados incluyen máquinas virtuales y redes. Ambos se explorarán con mayor detalle en las próximas lecciones.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+### Iaas en la practica
+
+Para comprender las distinciones entre las `infraestructuras tradicionales` e `infraestructuras como servicio`, consider el siguiente ejemplo:
+
+![](img/fig36.png){width="400"}
+
+-   **En un escenario convencional,** un administrador de base de datos se ocupa del Hardware del servidor: potencia informática, espacio en disco, componentes de red.
+
+-   El uso de una **maquina virtual** en la nube elimina la necesidad de mantenimiento de hardware. Las máquinas virtuales brindan la libertad de seleccionar sus sistema operativo e instalar una variedad de aplicaciones, como lo haría con un servidor local.
+
+Azure administra fallas de hardware y desastres potenciales, garantizando que su máquina virtual no se vea afectada. Usted sigue siendo responsable de gestionar el sistema operativo, SQL Server, bases de datos y manejo de otras configuraciones de software.
+:::
+
+::: {.column style="font-size:15px"}
+### Plataforma como Servicio (PaaS)
+
+![](img/fig37.png){width="300"}
+
+**El modelo de Plataforma como Servicio** lleva estas ventajas a un nivel superior y permite a los usuarios de la nube olvidarse también del sistema opertativo y de los componentes de software.
+
+La plataforma como servicio simplifica el proceso de creación y ejecutar aplicaciones proporcionando una plataforma lista para usar.
+
+### PaaS en la practica
+
+Nuestro administrador de base de datos podría usar Azure SQL para permitir concentrarse en el desarrollo y administración de bases de datos, sin preocuparse por el mantenimiento de máquinas virtuales.
+
+![](img/fig38.png){width="330"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Azure proporciona una plataforma como servicio no sólo para la funcionalidad de base de datos sino también para varios tipos de aplicaciones.
+
+El servicio de aplicaciones es una excelente opción para aplicaciones web y móviles, que aprenderemos en las próximas lecciones.
+
+#### Computación sin servidor
+
+![](img/fig39.png)
+
+Un modelo aún más simple es la computación sin servidor. Por ejemplo, Azure SQL permite a los usuarios controlar ciertas configuraciones relacionadas con la infraestructura, como el rendimiento de la base de datos y la seguridad de la red.
+
+La tecnología sin servidor transfiere más responsabilidad al proveedor de la nube, y lo usuarios se concentran principalmente en escribir código.
+
+Las aplicaciones se dividen en componentes más pequeños e independientes que se ejecutan en respuesta a eventos.
+
+### Funciones Azure
+
+![](img/fig40.png){width="150"}
+:::
+
+::: {.column style="font-size:15px"}
+Azure ofrece varias opciones sin servidor, siendo las funciones de Azure las más destacadas.
+
+-   Las funciones permiten a los desarrolladores ejecutar código en respuesta a eventos sin la necesidad de administrar la infraestructura.
+
+-   Al caracterizar por su baja complejidad, las funciones se utilizan principalmente para abordar requisitos específicos.
+
+### Funciones Azure en la practica
+
+![](img/fig41.png){width="400"}
+
+Nuestro administrador de base de datos necesita que los índices de la base de datos se reconstruyan todos los domingos y reciba una notificación sobre el resultado.
+
+-   Podría comenzar a utilizar una función de Azure que se active cada domingo y realice los pasos necesarios.
+
+#### Contenedor
+
+Otra categoría específica de componentes sin servidor se conoce como servicios de contenedor.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig42.png){width="200"}
+
+Un **contenedor** es un software liviano, independiente y ejecutable que incluye todo lo necesario para ejecutar un package de software.
+
+Con los contenedores, puedes olvidarte de todos los requisitos previos del software para probar o ejecutar aplicaciones , incluido el sistema operativo.
+
+-   Por ejemplo, podría estar ejecutando una aplicación Linux implementada en un contenedor que se ejecuta en un sistema Windows.
+
+### Cuando usar contenedores?
+
+![](img/fig43.png){width="400"}
+:::
+
+::: {.column style="font-size:15px"}
+Los contenedores se utilizan con frecuencia para crear soluciones a través de un microservicio, dividiendo aplicaciones complejas en componentes más pequeños e independientes.
+
+-   Por ejemplo, un sitio web se puede dividir en varios contenedores:\
+    -   Uno para el front-end.\
+    -   Uno para el back-end\
+    -   Y Azure SQL para la base de datos.
+
+Esta separación permite el mantenimiento, escalamiento o actualización independientes de diferentes componentes de la aplicación.
+
+#### Servicios de Contenedores de Azure
+
+Azure ofrece varios servicios de contenedores:
+
+-   **Instancias de contenedores de Azure**\
+    ![](img/fig44.png){width="200"}\
+    \
+    Estos sirven para ejecutar rápidamente contenedores y probar o ejecutar aplicaciones en diferentes sistemas operativos y escenarios de rendimiento.\
+    \
+    El registro de contenedores de Azure se utiliza para almacenar y administrar plantillas de contenedores.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+-   **Azure Kubernetes**\
+    ![](img/fig45.png){width="200"}\
+    \
+    El servicio Azure Kubernetes es un contenedor orquestador que facilita la implementación, gestión y escalamiento de aplicaciones en contenedores.
+
+    \
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Visión general de la red Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Exploraremos los servicios de redes de Azure
+
+![](img/fig46.png){width="400"}
+
+La red ofrece la posibilidad de conectar computadoras y dispositivos para compartir datos y recursos. Permite la comunicación y la colaboración. Las redes incluyen tanto hardware, como enrutadores y cables, como protocolos de comunicación para el intercambio de datos.
+
+#### Información general sobre los servicios de red de Azure
+
+![](img/fig47.png){width="300"}
+:::
+
+::: {.column style="font-size:15px"}
+Los servicios de red son componentes fundamentales de la nube de Azure, proporcionando la capacidad de conectar y proteger recursos en la nube.
+
+Comprender los componentes de la red es vital para diseñar y gestionar soluciones basadas en la nube.
+
+Examinaremos de cerca los componentes de red clave y su funcionalidad.
+
+### Qué es una dirección IP?
+
+![](img/fig48.png){width="200"}
+
+**Una dirección IP** es como un número de identificación único para un dispositivo en internet. Ayuda a que la información llegue al dispositivo correcto, de forma similar a como una dirección residencial ayuda a que el correo llegue a la casa correcta.
+
+### Qué es un espacio de direcciones IP?
+
+### ![](img/fig49.png){width="200"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Las direcciones IP se organizan dentro de espacios de direcciones IP, como un vecindario donde se ubican los dispositivos. Así mismo como las casas en la misma calle tienen diferentes números de casa, los dispositivos dentro de la misma IP.
+
+El espacio de direcciones comparte una parte común de la dirección y al mismo tiempo tiene una porción única que los distingue.
+
+### Subredes
+
+![](img/fig50.png){width="300"}
+
+Los espacios de direcciones IP se pueden dividir en subredes. Es como agrupar las casas de un lado de la calle por separado de las del otro lado.
+
+Las redes pueden facilitar la organización y el control del flujo de datos entre diferentes grupos de dispositivos.
+
+### Pública vs Privada
+
+Una dirección IP puede ser pública o privada.
+
+-   Las direcciones IP públicas son accesibles desde internet
+
+-   Mientras que las direcciones IP privadas solo pueden conectarse con dispositivos dentro del mismo espacio de dirección IP.
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig51.png){width="450"}
+
+Compare esto con un centro comercial público, abierto a todos, versus una oficina comercial restringida a los empleados.
+
+#### Conectividad de recursos en la nube
+
+![](img/fig52.png){width="250"}
+
+Una red virtual de Azure (o VNET) permite la comunicación entre recursos en la nube como máquinas virtuales, aplicaciones web y bases de datos. Se llama `virtual` porque las conexiones entre los recursos no son físicos, sino que están conectados a través de software.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Una VNET tiene un espacio de IP privado asociado y se puede dividir en múltiples subredes si es necesario. Los recursos de Azure están conectados a subredes que permiten el acceso a otros recursos en la nube.
+
+### Puntos finales privados
+
+Las VNET utilizan direcciones privads, también conocidas como puntos finales privados.
+
+![](img/fig53.png){width="300"}
+
+Los recursos dentro de una VNET pueden comunicarse entre sí, pero no son accesibles desde internet. Para que los recursos dentro de una VNET tengan acceso a nternet, deben tener un punto final público.
+
+![](img/fig54.png){width="300"}
+
+Para recursos con máquinas virtuales, una posible solución es asignar direcciones IP públicas.
+:::
+
+::: {.column style="font-size:15px"}
+Otro tipo de recursos de Azure, como las aplicaciones web, no requieren IP públicas para el acceso a internet.
+
+![](img/fig55.png){width="300"}
+
+Vienen con una URL predeterminada proporcionada por Azure para permiter la conectividad a internet.
+
+#### VNET Summary
+
+-   Una VNET tiene un espacio de IP privado.
+
+-   El espacio se puede dividir en varias subredes si es necesario.
+
+-   Los recursos se conectan a subredes y pueden intercambiar información mediante puntos finales privados.
+
+-   Si se necesita acceso a internet, los recursos pueden utilizar puntos finales públicos.
+
+Ahora, vamos a analizar opciones para permitir el acceso a internet a los recursos detrás de redes virtuales.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Conectando redes virtuales
+
+![](img/fig56.png){width="300"}
+
+Pero **¿Cómo podemos establecer conexiones entre recursos en diferentes VNET sin depender de internet público?**
+
+La conectividad cruzada entre redes virtuales se puede lograr mediante el uso de `peering` de redes.
+
+El **Peering** evita la internet pública y utiliza la red de Microsoft para garantizar el tráfico privado entre redes.
+
+#### Conexión Local o On-Premises
+
+Azure también proporciona métodos para conectar entre instalaciones locales y la nube, formando efectivamente una red que extiende ambos dominios.
+
+![](img/fig57.png){width="300"}
+
+La conectividad se logra mediante un servicio de red privada virtual (VPN), concretamente `Azure VPN Gateway`.
+:::
+
+::: {.column style="font-size:15px"}
+`Azure VPN Gateway` permite a los usuarios acceder a redes y recursos de Azure desde ubicaciones remotas. Aunque la comunicación se realiza a través de internet, los datos se cifran y se mantienen protegidos contra accesos no autorizados.
+
+#### Azure ExpressRoute
+
+Para las empresas que necesitan mayor seguridad y privacidad, Azure proporciona un servicio de conexión de red llamado `Azure ExpressRoute`.
+
+![](img/fig58.png){width="400"}
+
+`Azure ExpressRoute` extiende las redes locales a la nube de Azure. a través de una conexión privada dedicada que evita la internet pública.
+
+Esto permite conectar oficinas y centros de datos a Azure, mientras la conexión ofrece mayor confiabilidad, velocidad y seguridad en comparación con internet normal.
+
+#### Azure DNS
+
+Es como la guía telefónica de internet: traduce los nombres de los sitios web en direcciones compatibles con las computadoras.
+
+Azure ofrece su propio servicio DNS para alojar y resolver dominios DNS.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig59.png){width="500"}
+
+Utiliza la infraestructura en la nube de Azure para la resolución de nombres de dominio.
+
+Azure DNS permite una excelente gestión de registros DNS, ofreciendo:
+
+-   Escalabilidad.
+
+-   Seguridad.
+
+-   Integración con otros recursos de Azure.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Maquinas virtuales Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Exploremos más detalles relacionados con las maquinas virtuales.
+
+**¿Qué es una maquina virtual (VM)?**
+
+![](img/fig60.png){width="110"}
+
+-   Una máquina virtual, o VM, es como una computadora dentro de su computadora.
+
+-   Es un software que permite ejecutar diferentes sistemas operativos, sistemas y aplicaciones sin necesidad de un dispositivo físico separado.
+
+Imagínese su computadora como una gran unidad de almacenamiento. Las VM son como contenedores individuales dentro de la unidad, compartiendo recursos como ubicación, iluminación y seguridad.
+
+![](img/fig61.png){width="300"}
+:::
+
+::: {.column style="font-size:15px"}
+Así como los contenedores separados y seguros en la unidad de almacenamiento permiten que diferentes usuarios almacenen sus artículos. Sin interacción, las máquinas virtuales garantizan que distintas actividades informáticas se ejecuten de forma independiente sin interferencias.
+
+### Maquina Virtual Tradicional
+
+Imagina que tus ordenador ejecuta Windows
+
+![](img/fig62.png){width="300"}
+
+Si bien puede manejar la mayoría de las aplicaciones de Windows, acceder a las aplicaciones nativas de macOS puede ser un desafío.
+
+Alternativamente es posible que necesiten trabajar con varias versiones de Windows. Las maquinas virtuales ofrecen una solución sencilla, puedes crear varias maquinas virtuales en tu computadora, cada una con características distintas. Estas maquinas virtuales comparten el procesador, la memoria y el espacio de disco de su computadora.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+### Maquinas virtual Azure
+
+Azure ofrece una solución basada en la nuve para máquinas virtuales.
+
+![](img/fig63.png){width="250"}
+
+Al crear una máquina virtual en Azure, se deben especificar varias características y componentes. Muchos de estos se pueden modificar posteriormente para cumplir con requisitos específicos, lo que hace que las maquinas virtuales: sean una solución adaptable para potencia informatica y rentabilidad.
+
+### Componentes de VM
+
+![](img/fig64.png){width="280"}
+
+Algunas características están asociadas a la propia VM, como la cantidad de procesadores, la memoria, el sistema operativo.
+:::
+
+::: {.column style="font-size:15px"}
+Otras se traducen en recursos esenciales de los que depende la máquina virtual. Por ejemplo:
+
+-   Al especificar el número y tamaño de los discos se obtienen resultados en la creación de discos de Azure con la configuración solicitada.
+
+-   También puede elegir entre unidades de disco duro tradicionales y unidades de estado sólido de mayo rendimiento.
+
+-   Los componentes dependientes, también incluyen aspectos relacionados con la red. Para que una maquina virtual se comunique con otros recursos, debe:\
+    \
+
+    -   Requiere una tarjeta de interfaz de red conectada a una red virtual.
+
+-   Si se necesita acceso a internet, también es necesaria una IP pública.
+
+#### Casos de uso de maquinas virtuales
+
+![](img/fig60.png){width="110"}
+
+-   Las maquinas virtuales de Azure se pueden usar para alojar aplicaciones, realizar análisis y gestionar tareas relacionadas con datos.
+
+-   Sirven tanto para pruebas de software como para cargas de trabajo de producción.
+
+-   Además, las maquinas virtuales son eficaces para ejecutar sistemas heredados.
+
+-   Aplicaciones cuando no es posible la migración a servicios modernos de Azure.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Escala
+
+![](img/fig65.png){width="110"}
+
+Puede implementar máquinas virtuales individuales para pruebas, desarrollo o tareas más pequeñas. Alternativamente, puede agrupar las máquinas virtuales para garantizar alta disponibilidad, escalabilidad y redundancia.
+
+Azure puede administrar las ***agrupaciones de máquinas virtuales*** a través de características como conjunto de escala y conjuntos de disponibilidad.
+
+#### Conjuntos de Escala
+
+Los conjuntos de escala son una función que le permite implementar y administrar un conjunto de máquinas virtuales idénticas.
+
+![](img/fig66.png){width="120"}
+
+La cantidad de máquinas virtuales se puede ajustar automáticamente según la carga de trabajo o un cronograma definido.
+:::
+
+::: {.column style="font-size:15px"}
+Esta flexibilidad garantiza un rendimiento máximo y una utilización eficiente de los recursos, al tiempo que minimiza los costes.
+
+#### Conjuntos de Escala por Casos de Uso
+
+Por ejemplo, puede elegir tener una mayor cantidad de máquinas virtuales al realizar una carga de almacén de datos y luego volver a la cantidad mínima de instancias requeridas.
+
+![](img/fig67.png){width="300"}
+
+O podría aumentar la cantidad de máquinas virtuales que alojan un sitio web en línea. Para ampliar en períodos como el Black Friday para que todos los clientes puedan realizar sus pedidos.
+
+![](img/fig68.png){width="300"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Conjuntos de disponibilidad
+
+Dentro de un conjunto de disponibilidad, las máquinas virtuales se encuentran dispersas en los DataCenter en varios racks de hardware físicos, conmutadores de red y unidades de almacenamiento.
+
+![](img/fig69.png){width="250"}
+
+Esta distribución protege a sus máquinas virtuales de posibles fallos de hardware o de mantenimiento.
+
+Si un bastidor o sección particular del DataCenter detecta un problema, las máquinas virtuales en otros racks continuan funcionando, lo que garantiza la disponibilidad.
+
+![](img/fig70.png){width="200"}
+:::
+
+::: {.column style="font-size:15px"}
+Esta función le permite garantizar la continuidad del sitio web. Accesibilidad para los clientes, incluso en caso de problemas de infraestructuras.
+
+#### Migración desde on-premises
+
+Las maquinas virtuales pueden servir como fase inicial para las empresas que buscan migrar a la nube de Azure.
+
+![](img/fig71.png){width="250"}
+
+-   Por ejemplo, una empresa que gestiona numerosas bases de datos en su entorno podría iniciar la migración adoptando máquinas virtuales como un modelo de infraestructura como Servicio.
+
+-   Al actuar como sustituto del hardware tradicional, esto marca el paso inicial hacia la adopción de tecnologías modernas.
+
+-   Posteriormente podrán avanzar hacia Azure SQL como Plataforma como Servicio.
+
+#### Futuras consideraciones
+
+Las soluciones de Plataforma como Servicio están reemplazando gradualmente a las soluciones de maquinas virtuales tradicionales, al proporcionar un enfoque más optimizado para el desarrollo y la implementación de aplicaciones
+
+Elimina la necesidad de administrar la infraestrucura subyacente, lo que permite a los desarrolladores centrarse únicamente en codificación y funcionalidad de la aplicacion, acelerando los ciclos de desarrollo y mejorando la eficiencia general.
+:::
+:::::
+
+## Opciones para alojar aplicaciones
+
+::::: columns
+::: {.column style="font-size:15px"}
+Ahora exploraremos opciones para alojar aplicaciones en la nube de Azure.
+
+#### Aplicaciones Modernas
+
+Además de los numerosos servicios y recursos que Azure ofrece para el almacenamiento de datos, procesamiento y análisis, otro dominio extenso es el desarrollo de software y alojamiento de aplicaciones.
+
+![](img/fig72.png){width="165"}
+
+Las tendencias modernas dictan que la mayoría de las empresas ofrecen versiones en línea de sus aplicaciones, compatibles con funcionalidades web, móviles e incluso tabletas.
+
+### Migrar desde on-premises
+
+![](img/fig73.png){width="200"}
+:::
+
+::: {.column style="font-size:15px"}
+Como también hemos visto en ejemplos anteriores, el primer paso que debe dar una empresa que busca trasladar un sitio web y las aplicaciones heredades desde las instalaciones locales a la nube se realizarían con el uso de máquinas virtuales. Esto no modernizaría de ninguna manera el software existente, pero permitiría a la empresa tener dos componentes de software críticos en un entorno de nube seguro y altamente disponible.
+
+### Migrar a servicios modernos
+
+El siguiente nivel sería migrar o refactorizar las aplicaciones existentes para utilizar servicios nativos de Azure.
+
+![](img/fig74.png){width="300"}
+
+El siguiente nivel sería migrar o refactorizar las aplicaciones existentes para utilizar servicios nativos de Azure.
+
+-   Esto podría incluir el uso de servicios de contenedores si la aplicación se puede dividir fácilmente en varios componentes más pequeños.
+
+-   O podría significar utilizar un servicio de aplicaciones, una plataforma de Azure altamente capaz y flexible especializada en el alojamiento de aplicaciones.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Azure App Service
+
+![](img/fig75.png){width="110"}
+
+-   Es una plataforma totalmente administrada para crear, implementar y escalar aplicaciones web.
+
+-   Adminte múltiples lenguajes de programación, proporciona escalamiento automático, y ofrece servicios como aplicaciones web, aplicaciones API, trabajos web y aplicaciones móviles.
+
+Veamos cada uno en detalle:
+
+1.  **Web Apps\
+    **![](img/fig76.png){width="120"}**\
+    \
+    **Las aplicaciones web son un tipo de servicio que le permite crear, alojar y escalar aplicaciones web en la nube.\
+    \
+    Proporciona una plataforma totalmente administrada con características como escalamiento automático, integración continua e implementación.\
+:::
+
+::: {.column style="font-size:15px"}
+Incluye soporte para múltiples lenguajes de programación, incluidos `.NET`, `Java`, `Node.js`, `Python` y más.
+
+### Casos de usos Web Apps
+
+![](img/fig77.png){width="120"}
+
+Las aplicaciones web dentro del servicio de aplicaciones de Azure son adecuadas para alojar una variedad de sitios web, desde los básicos no interactivos hasta las aplicaciones complejas basadas en web.
+
+Los servicios de migración de Azure presentados en el capitulo anterior, proporcionan la capacidad de migrar sitios web tradicionales a aplicaciones web.
+
+La herramienta evalúa automáticamente el sitio web existente y presenta una lista de verificación para garantizar un proceso de migración sin problemas.
+
+#### Qué es una API?
+
+![](img/fig78.png){width="110"}
+
+Una API, interfaz de programación de Aplicaciones, permite que diferentes programas puedan comunicarse entre sí con facilidad, utilizando instrucciones estandarizadas.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Define las reglas y métodos de cómo deben interactuar los componentes de sotfware, sin profundizar en el código subyacente. Es como el menu de un restaurante
+
+![](img/fig79.png){width="160"}
+
+Simplemente eliges tu comida y te la sirven, sin necesidad de necesitar saber los ingredientes necesarios y los pasos para cocinarlo.
+
+#### API Apps
+
+![](img/fig80.png){width="120"}
+
+El servicio de aplicaciones ofrece la función de aplicaciones API para tales fines. Estas aplicaciones ofrecen un entorno dedicado para la creación de API, lo que permite a los desarrolladores poder exponer la funcionalidad de sus aplicaciones para que otros servicios las consuman.
+:::
+
+::: {.column style="font-size:15px"}
+#### Web Jobs
+
+![](img/fig81.png){width="160"}
+
+Mientras que las aplicaciones web y las aplicaciones API gestionan los aspectos frontales y la comunicación con otros. Los componentes y los trabajos sirven como tareas en segundo plano o scripts que se ejecutan junto con una aplicación web.
+
+Pueden realizar una variedad de funciones automatizadas, incluidos trabajos programados, procesos continuos o tareas a pedido.
+
+Ofreciendo una solución flexible y escalable, los trabajos web ejecutan código en segundo plano.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Mobile Apps
+
+![](img/fig82.png){width="120"}
+
+El servicio de aplicaciones de Azure, incluye una característica denominada aplicaciones móviles, que permite a los desarrolladores crear servicios back-en escalables para aplicaciones móviles.
+
+Esta función proporciona opciones como autenticación , datos sin conexión, sincronización, notificaciones push y la capacidad de conectarse a sistemas locales.
+
+#### Ventajas del servicio de aplicaciones Azure
+
+El servicio de aplicaciones de Azure es una solución completa para aplicaciones modernas que cubre varios aspectos.
+
+![](img/fig83.png){width="350"}
+:::
+
+::: {.column style="font-size:15px"}
+Utilice aplicaciones web para tanto para la interfaz de usuario como para la funcionalidad de back-end.
+
+Integre aplicaciones API para un intercambio de información fluido con otros sistemas.
+
+Deje que los trabajos web administren los procesos en segundo plano y las actividades programadas.
+
+Y las aplicaciones móviles pueden soportar la estructura de back-end requerida para sus aplicaciones móviles, ofreciendo un aspectro completo para su aplicación.
+
+En configuraciones complejas, considere servicios de Azure adicionales, como almacenamiento o bases de datos, para manejar sus datos.
+
+La comunicación entre componentes se pueden realizar a través de elementos de red, como las VNET analizadas anteriormente.
+:::
+:::::
+
+# Identidad, control de Acceso y Seguridad
+
+::::: columns
+::: {.column style="font-size:15px"}
+En este capítulo explorara el control de acceso e identidad de Azure, cubriendo el cambio a soluciones de identidad basadas en la nube, las funciones de control de acceso y conceptos clave de seguridad como RBAC y confianza cero, con especial atención a Microsoft Defender para la nube.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Servicios de Directorio Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+En esta lección analizaremos los servicios de directorio de Azure.
+
+#### Directory Services
+
+![](img/fig84.png){width="160"}
+
+-   **Active Directory** es una herramienta convencional para administrar identidades y permisos en entornos locales basados en Windows.
+
+![](img/fig85.png){width="160"}
+
+-   Microsoft Entra ID es su contraparte en la nube; una versión en línea más directa, simplificada y fácil de usar.
+:::
+
+::: {.column style="font-size:15px"}
+### Active Directory (AD)
+
+![](img/fig86.png){width="160"}
+
+Active Directory, o AD, actúa como una libreta de direcciones para los datos digitales de una organización, en los cuales organizamos y almacenamos información sobre usuarios, computadoras y recursos.
+
+Funciona como un servicio de identificación centralizado para usuarios y computadoras al tiempo que gestiona el acceso a los recursos de la empresa.
+
+Piensa en ello como un sistema de acceso con tarjeta llave para un edificio de oficinas, donde sólo los empleados con dicha tarjeta pueden entrar.
+
+De manera similar, en Active Directory, solo los usuarios y computadoras autorizados pueden acceder a los recursos y archivos de la organización.
+
+![](img/fig87.png){width="110"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Los permisos se otorgan en función de los roles, reflejando cómo los empleados tienen acceso a áreas específicas del edificio limitadas a sus funciones.
+
+![](img/fig88.png){width="180"}
+
+Esta estructura de permisos garantiza que los usuarios solo puedan acceder a los recursos a los que están autorizados.
+
+### Estructura de AD
+
+![](img/fig89.png){width="200"}
+:::
+
+::: {.column style="font-size:15px"}
+AD clasifica a los usuarios como individuos y a las computadoras como dispositivos dentro de la red.
+
+Los grupos unen usuarios o computadoras con características o permisos compartidos, y los grupos pueden anidarse.
+
+Los objetos AD se denominan colectivamente entidades, cada una de las cuales posee características distintas. Estas características y propiedades basadas en su tipo de identidad, como usuario, computadora o grupo.
+
+#### Azure Directory Services
+
+![](img/fig90.png){width="140"}
+
+-   Los servicios de directorio de Azure son herramientas basadas en la nube para administrar las identidades y el acceso de los usuarios.
+
+-   Apoyan el acceso seguro a aplicaciones y recursos, desempeñando un papel clave en autenticación, autorización y gestión de identidad en entorno Azufe e híbridos.
+
+-   `Microsoft Entra ID` es la característica principal de los servicios de directorio de Azure. Funciona como una clave maestra para el entorno de nube de Azure, lo que simplifica la conexión en línea, experiencia con un único conjunto de credenciales de inicio de sesión para servicios como correo electrónico, almacenamiento de archivos y otros recursos en la nube. Prioriza la conveniencia, eliminando la necesidad de recordar múltiples nombres de usuario y contraseñas para varias plataformas en la nube de Microsoft.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+`Microsoft Entra ID` ofrece servicios clave como:
+
+-   Autenticación, para verificar la identidad de acceder a aplicaciones, con funciones como la autenticación multifactor, que veremos más adelante.
+
+-   Inicio de sesión único (SSO), para recordar un nombre de usuario y una contraseña para múltiples aplicaciones y plataformas, simplificando el modelo de seguridad.
+
+-   Gestión de aplicaciones tanto para aplicaciones locales como en la nube.
+
+-   Gestión de dispositivos y políticas de acceso para una mayor seguridad.
+
+### Identidades Externas
+
+![](img/fig91.png){width="170"}
+
+-   Microsoft Entra ID mejora la colaboración mediante identidades externas (individuos o dispositivos fuera de su organización) para acceder a recursos sin crear cuentas de usuario adicionales.
+
+-   Esto es especialmente beneficioso cuando se trabaja con socios externos, consultores, o proveedores, ya que simplifica el acceso a los recursos sin necesidad de nuevas cuentas de usuario.
+:::
+
+::: {.column style="font-size:15px"}
+### Entornos Híbridos
+
+![](img/fig92.png){width="300"}
+
+Un entorno híbrido se refiere a una infraestructura informática que combina elementos tanto de servicios locales (centros de datos locales tradicionales) como de servicio basados en la nube.
+
+-   Este enfoque proporciona la capacidad de aprovechar los beneficios de ambos, soluciones locales y en la nube según necesidades y requesitos específicos.
+
+-   También permite a las empresas realizar una transición gradual a la nube. Mientras mantiene ciertos aspectos de su infraestructura en sus instalaciones.
+
+![](img/fig93.png){width="300"}
+
+-   En una configuración híbrida, AD y Microsoft Entra ID pueden funcionar juntos para compartir información sobre usuarios, computadoras, grupos y sus propiedades.
+
+-   Esta sincronización permite el acceso a recursos tanto en la nube como en redes locales.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Piensa en ello como si tuvieras sucursales de oficina. Los empleados son reconocidos en todas las sucursales y su acceso a ciertas instalaciones en cada sucursal aunque sean edificios diferentes.
+
+![](img/fig94.png){width="200"}
+
+Al igual que el acceso a varios edificios dentro de una empresa, AD y Microsoft Entra ID la función de identificación se combina para permitir el acceso tanto en entornos locales como en la nube.
+
+#### Conclusion
+
+-   Microsoft Entra ID es esencial para una gestión eficiente y segura de identidades y accesos en la nube.
+
+-   Sin ella, las organizaciones tendrían que lidiar con problemas desorganizados, autenticación, lo que genera experiencia de usuario confusa y mayores riesgos de seguridad.
+
+-   Microsoft Entra ID simplifica esto al proporcionar un conjunto unificado de credenciales para acceder a diversos recursos, haciéndolo más fácil para los usuarios y garantizando medidas de seguridad consistentes.
+:::
+
+::: {.column style="font-size:15px"}
+-   Si ella, las organizaciones les puede resultar difícil revocar el acceso de manera eficiente y ajustar los permisos, lo que aumenta el riesgo de acceso no autorizado y violaciones de datos.
+:::
+:::::
+
+## Servicios de Identidad y Contro de Acceso de Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Exploraremos cómo Azure facilita la administración de identidades y acceso.
+
+#### Métodos de Autenticación en Azure
+
+![](img/fig95.png){width="180"}
+
+La **autenticación** es el proceso de verificar la identidad de una persona, individuo, servicio o dispositivo presentando credenciales para demostrar quiénes son.
+
+Es similar a presentar el pasaporte en el aeropuerto. Esta acción valida tu identidad, pero el destino al que vuelas requiere un proceso de verificación distinto.
+
+Azure ofrece métodos de autenticación, que exploraremos en breve.
+
+### Milti-Factor de Autenticación (MFA)
+
+![](img/fig96.png){width="110"}
+:::
+
+::: {.column style="font-size:15px"}
+-   La autenticación multifactor, o MFA, mejora la seguridad al requerir una forma adicional de identificación durante el inicio de sesión.
+
+-   Esto protege contra el acceso no autorizado, incluso en situaciones en las que la contraeña de una cuenta se ha visto comprometida.
+
+-   La MFA proporciona seguridad adicional al requerir dos o más elementos para una autenticación completa.
+
+-   Esto podría implicar un código enviado al teléfono de un usuario, una propiedad biométrica como una huella digital o pedirle al usuario que responda a una pregunta de desafío.\
+    \
+    ![](img/fig97.png){width="100"}
+
+-   Al combinar dos o más elementos, se reduce el impacto de la exposición de credenciales, lo que hace que sea más seguro que la autenticación de un solo factor, donde solo se requiere un nombre de usuario y una contraseña.
+
+-   Habilitar la autenticación multifactor es crucial para una seguridad sólida.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Autenticación sin Contraseña
+
+Si bien características como MFA mejoran la seguridad de la organización, los usuarios pueden encontrar la capa adicional incómoda.
+
+Los métodos de autenticación sin contraseña eliminan la necesidad de contraseñas, lo que hace que el proceso se más fácil de usar.
+
+![](img/fig98.png){width="60"}
+
+Para habilitar la autenticación sin contraseña, es necesario registrar dispositivos como computadoras y asociarlos con el usuario, una vez registrado, la autenticación puede ocurrir utilizando algo que el usuario tiene, sabe o es, sin depender de una contraseña.
+
+Los métodos de autenticación sin contraseña incluyen `Windows Hello` para empresas, aplicación Microsoft Authenticator y claves de seguridad FIDO2.
+
+#### Windows Hello para Negocios
+
+Es ideal para personas que tienen su propia computadora Windows dentro de la organización.
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig99.png){width="100"}
+
+Los usuarios pueden acceder a su computadora mediante datos biométricos (huella dactilar o reconocimiento facial) o un código PIN, que evita el acceso no autorizado por parte de otros compañeros o personas no autorizadas.
+
+#### Microsoft Authenticator App
+
+![](img/fig100.png){width="90"}
+
+Microsoft Authenticator App es una aplicación móvil que ofrece opciones de autenticación multifactor. Puede transformar cualquier teléfono iOS o Android en una herramienta segura sin contraseña. Los usuarios pueden iniciar sesión recibiendo una notificación en su teléfono, coincidiendo números mostrados, confirmando con datos biométricos (huella dactilar o rostro) o un código PIN.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### FIDO2 security Keys {.column style="font-size:15px"}
+
+![](img/fig101.png){width="180"}
+
+-   Una clave de seguridad FIDO2 ofrece un método de autenticación seguro y sin contraseña.
+
+-   **FIDO2**, un estándar abierto de **FIDO Alliance**, tiene como objetivo mejorar la seguridad en línea.
+
+-   La clave está disponible en diferentes formatos, incluidos dispositivos USB.
+
+-   Para autenticarte al conectarte a tu computadora, simplemente inserte el dispositivo USD FIDO2 en el puerto USD de la computadora en lugar de ingresar una contraseña.
+
+#### Acceso Condicional
+
+![](img/fig102.png){width="150"}
+
+Microsoft Entra ID utiliza acceso condicional, una herramienta que determina el acceso a los recursos en función de propiedades como la identidad del usuario, la ubicación y el dispositivo utilizado.
+:::
+
+::: {.column style="font-size:15px"}
+Esto permite a los usuarios ser productivos en cualquier lugar y al mismo tiempo proteger los activos de la organización.
+
+Además, el acceso condicional ofrece una experiencia de autenticación multifactor matizada. Por ejemplo, es posible que los usuarios no necesiten un segundo factor de autenticación en una ubicación conocida, pero podría solicitarse si el inicio de sesión se produce en una ubicación inesperada.
+
+La herramienta recopila y analiza dichos detalles al iniciar sesión y decide para compartir el acceso, denegarlo o imponer la autenticación multifactor.
+
+#### Acceso condicional por casos de uso
+
+![](img/fig103.png){width="100"}
+
+El acceso condicional resulta útil cuando se necesita aplicar una autenticación multifactor basada en roles, ubicación o red, como requerir MFA para administradores o colaboradores externos.
+
+![](img/fig104.png){width="150"}
+
+Puede permitir el acceso a los servicios exclusivamente a través de clientes aprobados, aplicaciones, controlando qué aplicaciones pueden conectarse a servicios específicos. A mode de ejemplo, el acceso de la base de datos que contiene información de los empleados y otros documentos sensibles deben realizarse exclusivamente a través de la VPN de la empresa.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig105.png){width="200"}
+
+Además, puede restringir el acceso a la aplicación a los usuarios, en dispositivos administrados que cumplen con los estándares de seguridad y cumplimiento.
+
+Para evitar posibles actividades maliciosas, una computadora que no tenga las últimas actualizaciones de seguridad tengan restringido el acceso a los recursos de la empresa.
+
+![](img/fig106.png){width="200"}
+
+Por último, puedes evitar el acceso desde fuentes no confiables, incluidas ubicaciones desconocidas o inesperadas.
+
+Puede considerar permitir el acceso de usuarios únicamente desde los países donde se encuentran sus oficinas.
+
+Alternativamente, podría ser necesario levantar una bandera roja si un usuario se conecta de un país y, poco después, se conecta desde otro país distante.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Modelo de Permisos de Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+El modelo e permisos de Azure se refiere a estructura y sistema establecido para administrar y controlar el acceso a los recursos de Azure.
+
+Microsoft Entra ID ofrece dos modelos principales para administrar el acceso:
+
+-   Roles de directorio y,
+
+-   Control de accesos basados en roles (RBAC).
+
+Estos modelos cumplen diferentes propósitos dentro del ecosistema de Azure.
+
+#### ¿Qué es un Rol?
+
+![](img/fig107.png){width="200"}
+
+En Microsoft Entra ID, un rol es una colección de permisos que define las acciones que un usuario, grupo o sistema puede realizar en los recursos de Azure.
+
+A modo de ejemplo, el rol de `Lector` proporciona la capacidad de ver cualquier propiedad de recurso en Azure Portal, pero no permite realizar cambios.
+:::
+
+::: {.column style="font-size:15px"}
+Por el contrario, el rol de `Colaborador`, con un nivel de acceso más alto, permite realizar cambios en los recursos subyacentes.
+
+Azure ofrece un conjunto completo de roles predefinidos y también permite la creación de roles personalizados si es necesario.
+
+#### Roles de Directorio
+
+![](img/fig108.png){width="160"}
+
+Los roles de directorio son un tipo de rol enfocado en la gestión de identidad y acceso dentro de la organización y no están directamente relacionados con la administración del acceso a los recursos de Azure (como máquinas virtuales o cuentas de almacenamiento).
+
+En términos más simples, se utilizan para determinar si una entidad está autorizada a acceder a la organización.
+
+Por ejemplo, al entrar a un país, usted se verifica inicialmente que cuente con un pasaporte válido y una VISA sin especificar las ciudades de destino.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig109.png){width="180"}
+
+Si su pasaporte esta vencido o no tiene VISA, se le niega la entrada al país.
+
+#### Casos de uso de los roles de directorios
+
+Los roles de directorio están asociados con la administración de usuarios y su acceso a Microsoft Entra ID. Generalmente se utilizan para tareas administrativas relacionadas con cuentas de usuario, grupos y configuraciones de directorio.
+
+Por ejemplo, los administradores de IT podrían necesitar un rol de directorio para ayudar a otros usuarios que experimenten dificultades para acceder a sus cuentas.
+
+Alternativamente, otro usuario puede requerir un rol de directorio para agregar o eliminar usuarios de un grupo específico.
+:::
+
+::: {.column style="font-size:15px"}
+#### Control de Accesos Basados en Roles (RBAC)
+
+![](img/fig110.png){width="200"}
+
+El RBAC es un marco que le permite administrar el acceso a Azure, recursos controlados quién puede hacer qué dentro de una suscripción, un grupo de recursos o un recurso individual.
+
+Esto le ayuda a asignar roles específicos a usuarios, grupos o aplicaciones, permitiéndoles realizar ciertas acciones sobre los recursos mientras restringen el acceso a otros.
+
+Permite a las organizaciones a implementar el principio del mínimo privilegio mediante asignar únicamente los permisos necesarios para que los usuarios realicen sus tareas.
+
+### Casos de uso RBAC
+
+![](img/fig111.png){width="150"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Como se puede apreciar en el diagrama previo, RBAC le permite configurar diferentes permisos para diferentes usuarios y grupos asignados únicamente a los recursos que necesitan utilizar. En la práctiva, los usuarios de un determinado departamento no deberían poder acceder a recursos que no les conciernen.
+
+Por ejemplo, los usuarios habituales no deberían poder ver la información de la nómina. Ni siquiera el personal de RRHH puede ver esto. En este caso solo el departamento financiero tendría acceso a ese conjunto particular de archivos.
+
+Por otra parte el departamento financiero no tiene ningún interés en los datos, componentes de almacen y solo el equipo de BI debe tener permiso para acceder a estos componentes.
+
+En términos prácticos, los individuos de un departamento específico sólo deben tener acceso a los recursos que sean relevantes para sus responsabilidades.
+
+#### Herencia de RBAC
+
+![](img/fig112.png){width="200"}
+
+La herencia de control de acceso basado en roles se refiere a la forma, en que los permisos se propagan a través de diferentes niveles de jerarquía de recursos. Los roles se pueden asignar en varios ámbitos, como suscripción, grupo de recursos o nivel de recurso.
+:::
+
+::: {.column style="font-size:15px"}
+El concepto de herencia entra en juego cuando los permisos asignados en los niveles superiores son heredados automáticamente por los niveles inferiores, a menos que se eliminen explícitamente.
+
+Considere este ejemplo:
+
+![](img/fig113.png){width="300"}
+
+Al ***grupo A*** se le otorga el rol e colaborador en el nivel de suscripción, que incluye dos grupos de recursos, ***RG1 y RG2***. Debido a la herencia, el grupo A hereda los permisos de colaborador para todos los recursos dentro de estos grupos de recursos.
+
+`RG1` contiene una máquina virtual y una cuenta de almacenamiento, y `RG2` contiene una aplicación web y una base de datos.
+
+Los permisos de contribución del Grupo A se extienden a todos los recursos.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Para restringir el acceso a la base de datos, el administrador elimina explicitamente los permisos heredados a los datos.
+
+![](img/fig114.png){width="300"}
+
+Dejando al Grupo A con derechos de colaborador para todos los recursos excepto la base de datos. En este caso el administrador fracturo la herencia.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Seguridad en la nube en Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+En esta lección aprenderemos sobre la seguridad de la nube en Azure.
+
+#### Cloud Security
+
+![](img/fig115.png){width="160"}
+
+-   La seguridad en la nube se refiere a la protección de datos, aplicaciones e infraestructura en la computación en la nube.
+
+-   Implica prácticas como el cifrado de datos, la gestión de identidades y la seguridad de la red, cumplimiento normativo y medidas para detectar y responder a incidentes de seguridad.
+
+-   La responsabilidad de la seguridad en la nube se comparte entre el proveedor de servicios en la nube y los usuarios. Su objetivo es garantizar la confidencialidad, integridad y disponibilidad de la información en entornos de nube.
+
+#### Zero Trust Model
+
+![](img/fig116.png){width="90"}
+:::
+
+::: {.column style="font-size:15px"}
+La confianza cero es un modelo de seguridad que comienza con asumir una posible violación y protege los recursos. En consecuencia, este modelo verifica cada solicitud como si se originara en una red no segura.
+
+Microsoft aboga firmemente por el modelo de seguridad de confianza cero, centrándose en los siguientes principios clave.
+
+### Zero Trust - Verificación Explícita
+
+![](img/fig117.png){width="100"}
+
+La verificación explícita establece que siempre debes autenticar y autorizar en función de todos los canales disponibles.
+
+Las funciones modernas, como la autenticación multifactor, simplifican la implementación de este proceso, garantizando una fácil validación de la identidad de un usuario.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+### Zero Trust - Accesos con Privilegios Mínimos
+
+![](img/fig118.png){width="100"}
+
+El acceso con privilegios mínimos implica restringir el acceso de los usuarios mediante politicas adaptativas basadas en riesgos y medidas de protección de datos.
+
+En pocas palabras, a los usuarios solo se les debe conceder accesos a los recursos y permisos esenciales para sus funciones laborales específicas, evitando privilegios innecesarios.
+
+### Zero Trust - Presunción de Infracción
+
+![](img/fig119.png){width="90"}
+
+El principio de presunción de infracción reconoce que atacantes decididos pueden encontrar una forma de entrar. Con esto en mente las medidas de seguridad están diseñadas para minimizar el impacto de una violación, limitar el acceso e implementar protección adicional dentro de la red.
+:::
+
+::: {.column style="font-size:15px"}
+En pocas palabras, si un actor malicioso obtiene acceso a componentes específicos dentro de una organización, se les debe impedir que amplíen su acceso a otras áreas.
+
+#### Defense - in - Depth
+
+![](img/fig120.png){width="120"}
+
+El objetivo de la defensa en profundidad es salvaguardar los recursos y evitar el acceso no autorizado y el robo de información.
+
+Esta estrategía emplea múltiples capas de mecanismos para bloquear el progreso de un ataque que intenta obtener acceso no autorizado a los datos.
+
+Piense en la defensa en profundidad como un enfoque en capas, donde los datos centrales están rodeados de capas protectoras que trabajan juntas para garantizar su seguridad.
+
+### Defense - in - depth - layers
+
+![](img/fig121.png){width="200"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Cada capa actúa como protección, garantizando que si se viola una, la siguiente evita una mayor exposición. Esto elimina la dependencia de una sola capa, lo que ralentiza ataques y proporciona información de alerta para acciones de seguridad proactivas.
+
+Las capas claves incluyen:
+
+-   `Capa de seguridad física:` protege el hardware informático en el centro de datos.
+
+-   `Capa de identidad y acceso:` administra el acceso a la infraestructura y el control de acceso.
+
+-   `Capa perimetral:` utiliza firewalls y otras herramientas para proteger contra ataques a gran escala, que implican múltiples intentos de obtener acceso.
+
+-   `Capa de red:` controla la comunicación de recursos a través de segmentación y controles de acceso, como las VNET.
+
+-   `Capa de computo:` protege el acceso a las máquinas virtuales y garantiza que estén protegidas por software antivirus y antimalware.
+
+-   `Capa de aplicación:` garantiza que las aplicaciones sean seguras y libres de vulnerabilidades.
+
+-   `Capa de datos:` controla el acceso a datos críticos del negocio y de los clientes.
+
+Estas capas sirven como guía para tomar decisiones de configuración de seguridad en todas las capas de la aplicación.
+:::
+
+::: {.column style="font-size:15px"}
+#### Microsoft Defender for Cloud
+
+![](img/fig122.png){width="130"}
+
+Aunque ciertas capas, como se mencionó anteriormente, caen bajo la responsabilidad del proveedor de la nube, los usuarios de Azure también deben implementar medidas de seguridad en su extremo.
+
+Azure ayuda a los clientes al ofrecer Microsoft Defender para la nube, una herramienta de monitoreo para la gestión de la postura de seguridad y protección contra amenazas.
+
+Monitorea diversos entornos, brindando orientación y notificaciones para mejorar la seguridad en configuración en la nube, locales e híbridas.
+
+Defender for Cloud simplifica los recursos, ofrece seguimiento de la postura de seguridad, defensa contra amenazas cibernéticas y gestión general de la seguridad.
+
+Es fácil comenzar a usarlo y se integra en Azure de forma nativa.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Assess, secure and defend
+
+![](img/fig123.png){width="350"}
+
+Defender for Cloud aborda tres requisitos cruciales en la gestión de la seguridad de sus recursos y cargas de trabajo en la nube y en las instalaciones:
+
+1.  `Assess:` la evaluación continua ayuda a obtener conciencia de su postura de seguridad identificando y rastreando vulnerabilidades de manera consistente.
+
+2.  `Secure:` el fortalecimiento de la seguridad ayuda a fortalecer recursos y servicios.
+
+3.  `Defend:` detecta y resuelve amenazas dirigidas a recursos, cargas de trabajo y servicios.
+
+La seguridad en la nube es de suma importancia porque constituye la base de la confianza en nuestro panorama digital.
+
+Protege nuestros valiosos datos, aplicaciones y sistemas contra ataques no autorizados, garantizando la confidencialidad, integridad y disponibilidad de nuestros recursos.
+:::
+
+::: {.column style="font-size:15px"}
+La seguridad en la nube no es sólo una necesidad: es un requisito estratégico.
+
+Al comprender los desafíos, adoptar las mejores prácticas y utilizar herramientas de última generación que nos permiten navegar por el panorama de la nube con una seguridad reforzada.
+:::
+:::::
+
+# Comprensión de la Gestión y Gobernanza de Microsoft Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+Comenzaremos nuestro recorrido aprendiendo qué significan los conceptos de administración y gobernanza en Azure y qué tipo de casos de uso y tareas están involucradas. Aprenderá más sobre administración de costos, gobernanza, administración de recursos y monitoreo en Azure.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Administración y gobernanza de Azure
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Servicios vs Recursos
+
+### Servicios
+
+Un servicio es un conjunto de características o funcionalidades proporcionadas por Azure. Generalmente consiste en una combinación de componentes que trabajan juntos para proporcionar una capacidad específica.
+
+Algunos ejemplos son:
+
+-   Azure Monitor: para la supervisión.
+
+-   Azure Rosource Manager: para la gestión de recursos.
+
+-   Microsoft Cost Management: para la gestión de costos.
+
+### Recursos
+
+Un recurso, por otro lado, es un producto u objeto específico de un servicio. Es cualquier elemento gestionable dentro de Azure.
+
+Algunos ejemplos son:
+
+-   Una base de datos,
+
+-   Una aplicación web o una máquina virtual.
+
+Verá que ambos conceptos surgen con frecuencia mientras analizamos más a fondo los detalles de la administración y la gobernanza en Azure.
+:::
+
+::: {.column style="font-size:15px"}
+#### Administración y Gobernanza en Azure
+
+La gestión y gobernanza consiste en mantener las aplicaciones empresariales y los recursos que las respaldan.
+
+Para ello, hacemos uso de diferentes servicios que ofrece Azure.
+
+![](img/fig124.png)
+
+Tal como podemos apreciar en la imagen previa, podemos distinguir los siguientes cuatro usos generales para la gestión y gobernanza en Azure:
+
+-   Gestión de costos.
+
+-   Implementación de políticas y estándares.
+
+-   Gestión de recursos.
+
+-   Monitoreo.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Casos de usos de gestión y gobernanza
+
+![](img/fig125.png){width="140"}
+
+Ahora que sabemos más sobre lo que es la gestión y la gobernanza *¿Se trata de en qué tipo de tareas podemos utilizar Azure en la práctica?*
+
+Los casos de uso típico para la gestión y gobernanza en Azure son:
+
+-   Gestión de recursos que apoyan el negocio.
+
+-   Aplicaciones.
+
+-   Gestión proactiva para evitar sobrepasar el presupuesto.
+
+-   Garantizar que los estándares de protección de datos se implementen y se hagan cumplir.
+
+-   Supervisar el rendimiento y la disponibilidad de sus aplicaciones y recursos.
+
+A lo largo de este documento, analizaremos varios casos de uso con más detalle a medida que obtenga más información sobre las diferentes herramientas de administración y gobernanza proporcionadas en Azure.
+:::
+
+::: {.column style="font-size:15px"}
+#### Ejemplo de caso de uso: Dashboard Performance
+
+Supongamos que está alojando un panel que contiene datos de venta que se pueden explorar de forma interactiva.
+
+![](img/fig126.png){width="200"}
+
+Con la ayuda de azure, puede respaldar el panel con los recursos adecuados. Por ejemplo, puede asegurarse de que el panel de control se pueda manejar variando dinámicamente los niveles de tráfico, ya sea uso pico o baja demanda.
+
+También puede asegurarse de que haya continuidad y recuperación ante desastres con la replicación de datos en todas las regiones de Azure. Hay más cosas que puedes hacer para respaldar y mejorar tu panel de control.
+
+Con los servicios de Azure, también puede recopilar todo tipo de datos de rendimiento. Métricas relacionadas con el panel de control y analizarlas para mejorar la experiencia de uso.
+
+Por ejemplo, podría analizar cómo interactúan los usuarios con el panel y usar esto para agregar o eliminar funciones.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Gestión y Gobernanza de Costes
+
+Ahora exploremos las capacidades de Azure para la gestión y gobernanza de costos.
+
+Como solución en la nube, Azure ofrece la posibilidad de alquilar recursos y servicios en lugar de comprar y construir su propia infraestructura de servidor.
+
+![](img/fig127.png){width="200"}
+
+Esto siginifica que los costos en Azure están relacionados con la cantidad y el tiempo en que se utilizan los servicios y recursos.
+
+-   Una estructura de costo típica en Azure es el `"pago por uso"`, donde se le cobra en función de su uso real.
+
+-   Además de los servcios nativos de Azure, también puede utilizar servicios de terceros, que se pueden encontrar en `Azure Markeptlace`.
+
+### Gestión de Costos
+
+Estos tienen sus propios costos.
+
+![](img/fig128.png){width="100"}
+:::
+
+::: {.column style="font-size:15px"}
+Dado que usted paga por lo que usa, es muy importante realizar un seguimiento de su uso de Azure y los costos asociados.
+
+Afortunadamente, Azure le proporciona un conjunto de herramientas de gestión de costos. Esto le permitirá realizar un seguimiento de los costos de las aplicaciones y los recursos, establezca presupuestos, límites y alertas y analice sus costos periódicamente.
+
+### Ejemplo de caso de uso: Elaboración de presupuestos
+
+![](img/fig129.png){width="500"}
+
+Supongamos que usted es responsable de configurar los presupuestos en Azure para los proyectos de datos de su empresa. Con Azure, puede establecer límites de gasto para cada proyecto y configurar una alerta para el gerente si el proyecto excede el presupuesto y crear un informe tipo resumen de costos mensual para cada proyectos.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Gobernanza y Cumplimiento
+
+![](img/fig130.png){width="100"}
+
+El segundo componente que discutiremos en esta sesión es la gobernanza.
+
+La **gobernanza** se puede definir como los principios rectores que una empresa establece para dirigir sus operaciones de manera responsable, por ejemplo, definiendo reglas de seguridad.
+
+Estos principios rectores son la rendición de cuentas, la transparencia y la seguridad.
+
+Un caso de uso típico es el `cumplimiento`. Cumplimiento significa adherirse a los estándares industriales aplicables, leyes y normas, por ejemplo, respecto a la privacidad y la protección de datos. Esto es supervizado por organizaciones internas y externas.
+
+Las grandes empresas pueden tener un departamento de cumplimiento, por ejemplo:
+
+-   La supervisión externa normalmente la lleva a cabo un organismo gubernamental, como la Reserva Federal para los bancos en Estados Unidos.
+:::
+
+::: {.column style="font-size:15px"}
+### Gobernanza con Azure {.column style="font-size:15px"}
+
+Como vimos antes, la rendición de cuenta y la transparencia son partes importantes de la gobernanza.
+
+![](img/fig131.png){width="500"}
+
+Por lo general, esto también significa que una empresa necesita documentar e informar cómo cumple con sus obligaciones.
+
+Aquí es donde entra Azure, las tareas de gobernanza típica en Azure incluyen la configuración de políticas de gobernanza específicas y el registro de usuarios. Acciones para proporcionar una pista de auditoría y documentar e informar sobre el cumplimiento de las obligaciones regulatorias.
+
+Azure también puede tener en cuenta diferentes requisitos según las diferencias regionales en normas y regulaciones.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Ejemplo de caso de uso: Normativa de protección de datos
+
+Supongamos que usted es el responsable de cumplimiento encargado de garantizar que su empresa cumpla con las normas de protección de datos.
+
+![](img/fig132.png){width="500"}
+
+Con Azure, puede realizar tareas como aplicar la confidencialidad de los datos. Etiquetas como `"confidencial"` y requieren encriptación para datos sensibles.
+:::
+
+::: {.column style="font-size:15px"}
+#### Gestión y Seguimiento de Recursos
+
+Profundizaremos en los componentes de supervisión y administración de recursos de Azure.
+
+### Administración de Recursos en Azure
+
+La administración de recursos es la creación, organización y control de recursos en Azure.
+
+![](img/fig133.png){width="200"}
+
+Azure tiene algunas caracterísiticas importantes relacionadas con la gestión de recursos:
+
+-   Infraestructura:\
+    \
+    -   Como un código (IaC), que se refiere a cómo se administra la infraestructura de recursos en Azure;\
+    -   Etiquetas de recursos y,\
+    -   Bloqueos de recursos, que se utilizan para organizar y controlar recursos.\
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+### Infraestructura como código (IaC)
+
+La infraestructura como código o IaC es la base del modo en que se automatizan los recursos en Azure.
+
+Significa que los recursos se gestionan mediante código estructurado y herramientas de automatización en lugar de procesos manuales.
+
+Esto tiene varias ventajas:
+
+-   Garantiza la coherencia y reproducibilidad, es más fácil documentar y compartir y es menos propenso a errores. Compare esto con el guión de obra de teatro. Un guión contiene todas las señales, roles y direcciones escénicas necesarias para la obra. De manera similar, `IaC` utiliza archivos de configuración para definir una configuración específica para los recursos.
+
+Esto también garantiza la coherencia entre diferentes casos de uso y permite actualizaciones fáciles, como también puede hacer un script para ser reutilizado por otros grupos o adaptado para adaptarse a un estilo diferente sin tener que reescribir el guión desde cero.
+
+Sin embargo, IaC no es fácil de aprender y requiere experiencia en codificación.
+
+### Etiquetas y bloqueos de Recursos en Azure
+
+![](img/fig134.png){width="150"}
+
+Otra característica importante de administración de recursos en Azure es el uso de etiquetas de recursos y bloqueos de recursos.
+:::
+
+::: {.column style="font-size:15px"}
+**Etiquetas de Recursos:** son metadatos que se utilizan para organizar y controlar recursos.
+
+Las etiquetas de recursos se utilizan específicamente para etiquetar recursos, para realizar un seguimiento más eficiente de ellos, por ejemplo, para realizar el seguimiento de los costos.
+
+Se pueden comparar con etiquetar cajas en un almacén para darle seguimiento a su contenido y ubicación original en caso de ser trasladadas.
+
+**Bloqueos de Recursos:** se utilizan para evitar modificaciones de recursos o para evitar su eliminación, ya sea accidental o intencionada.
+
+Los bloqueos se pueden configurar de forma permanente o temporal, por ejemplo, durante el mantenimiento.
+
+Se podrían comparar co poner candados en algunas cajas de almacén.
+
+### Ejemplo caso de uso: Negocio - Recursos críticos
+
+Supongamos que usted es responsable de gestionar información crítica para el negocio sobre recursos en Azure y es necesario asegurarse de que esos recursos no se puedan eliminar.
+
+Con Azure, puede usar etiquetas de recursos para etiquetar los recursos como `críticos` y ponerles bloqueos de recursos para bloquear su eliminación.
+
+Ver la siguiente imagen:
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig135.png)
+
+#### Monitoreo con Azure
+
+![](img/fig136.png)
+:::
+
+::: {.column style="font-size:15px"}
+Nuestro componente final en esta sesión es el `monitoreo`.
+
+La supervisión es importante para mantener una descripción general de todos los procesos en Azure y su rendimiento.
+
+Las tareas de supervisión típicas en Azure incluyen:
+
+-   Identificar posibles problemas con los recursos o aplicaciones.
+
+-   Seguimiento del uso y los costos, y análisis de los datos registrados para planificar las necesidades futuras.
+
+Azure ofrece una solución integral para la monitorización, con una gran cantidad de capacidades para detectar problemas de forma proactiva y optimizar procesos.
+
+### Ejemplo caso de uso: Supervisión del estado de la aplicación
+
+Supongamos que administra una aplicación web con la ayuda de Azure. Es una aplicación fundamental para el negocio, por lo que su tarea es garantizar que el tiempo de inactividad sea mínimo.
+
+![](img/fig137.png){width="300"}
+
+Con azure, puede realizar tareas como detectar de forma proactiva problemas con los recursos, evitar tiempos de inactividad y monitorear el tráfico de uso para planificar nueva capacidad de recursos si es necesario.
+:::
+:::::
+
+# Gestión y Gobernanza de Costes
+
+::::: columns
+::: {.column style="font-size:15px"}
+Después de este capítulo, la gestión y la gobernanza de costos ya no serán ningún secreto para usted. Aprenderá a planificar y administrar costos en Azure y a trabajar con las herramientas de gestión de costos de Azure. También se familiarizará con la implementación de la gobernanza y el cumplimiento normativo, y con las herramientas que Azure ofrece para ayudarlo con eso.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Planificación y Gestión de Costos
+
+::::: columns
+::: {.column style="font-size:15px"}
+Aprenderemos más sobre cómo se manejan los costos en Azure.
+
+#### Factores que afectan los costos
+
+![](img/fig127.png){width="200"}
+
+Existen algunos factores que influyen en los costos en Azure, discutiremos los factores de costos más importantes:
+
+-   **`Consumo:`** sabiendo que el modelo de precios estándar en Azure es el pago por uso, el consumo afecta lógicamente los costos. Es decir, a medida que se utilizan los recursos se generan costos. Tenga en cuanto que solo la creación de recursos no genera costos; solo cuenta su uso real.
+
+-   **`Tipo de suscripción:`** algunos tipos de suscripciones incluyen bonificaciones o productos gratuitos. La cuenta gratuita de Azure, por ejemplo, ofrece a los usuarios un uso gratuito limitado de algunos servicios.
+
+-   **`Tipo de recurso y configuración:`** los recursos pueden tener niveles más altos, lo que genera costos más altos. Una maquina virtual, por ejemplo, tiene diferentes niveles de tamaño que ofrecen más potencia informática pero también cuestan más.
+
+-   **`Región y zonas de facturación:`** no solo los precios pueden variar según la región en la que te encuentres, sino que también se cobrarán costes si se realizan transferencias de datos a otras regiones.
+:::
+
+::: {.column style="font-size:15px"}
+### Formas de gestionar los costos
+
+Ahora que sabemos qué factores afectan los costos, podemos buscar estrategias para reducirlos.
+
+![](img/fig138.png)
+
+-   La primera estrategia es contar con `procesos de mantenimiento y monitoreo`. Estos pueden ayudar a encontrar recursos que están subutilizados o que tienen costos más altos que el promedio.
+
+-   En segundo lugar, podría valer la pena considerar `otros modelos de precios` que no sean el de pago por uso. Esto es especialmente interesante si existe una demanda estable a largo plazo para los recursos en Azure Cloud en lugar de una necesidad de flexibilidad a corto plazo.
+
+-   Para los costos relacionados con la `geografía`, podemos minimizar las transferencias de datos a otras regiones de Azure.
+
+-   Por último, Azure también proporciona varias `herramientas de gestión de costos`. Estas nos ayudan con la estimación de costos, presupuestos y alertas de gastos. Veremos más sobre estas herramientas más adelante.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Tareas de gestión de costos
+
+Analicemos ahora algunos ejemplos de tareas de gestión de costos en Azure.
+
+![](img/fig139.png){width="700"}
+
+Si su infraestructura local necesita migrarse a la nube, puede comparar costos con el mismo entorno en Azure Cloud.
+
+Si necesita crear nuevos recursos, primero puede estimar cuánto van a costar.
+
+Para los recursos que ya se están utilizando, puede obtener información en el gasto haciendo un análisis de costos y estableciendo presupuestos o alertas.
+
+Para cada una de estas tareas, Azure proporciona herramientas para ayudarlo. Discutiremos estas herramientas con más detalle en la siguiente sesi
+:::
+
+::: {.column style="font-size:15px"}
+### Ejemplo caso de uso: Costos de una máquina virtual (VM)
+
+Supongamos que está trabajando en un proyecto de datos para el cual necesita crear una máquina virtual en Azure.
+
+El presupuesto es ajustado, por lo que es necesario equilibrar los requisitos del proyecto con el presupuesto disponible.
+
+Para facilitar esta tarea, puede estimar de antemano los costos de la máquina virtual y otros recusos necesarios.
+
+Azure también le informará del costo por mes una vez que esté en el proceso de crear la VM y elegir su tamño.
+
+Una vez que la máquina virtual esté en funcionamiento, Azure puede ayudar a monitorear su uso y costos.
+:::
+:::::
+
+## Herramientas de gestión de costos
+
+::::: columns
+::: {.column style="font-size:15px"}
+Ahora, analizaremos las herramientas de gestión de costos con más detalle.
+
+Existen tres herramientas principales que se utilizan para la gestión de costos en Azure:
+
+| Herramienta | Uso |
+|------------------------------------|------------------------------------|
+| Calculadora de precios | Se utiliza para estimar los costos de una configuración de recursos específica en Azure. |
+| Calculadora de TCO | Se utiliza para comparar los costos totales de infraestructura local con la misma configuración en Azure. |
+| Plataforma de gestión de costos | Proporciona a los usuarios información y controles para monitorear, analizar y optimizar los costos. |
+
+### Calculadora de precios
+
+Como ya lo mencionamos la utilizamos para estimar los costos de una configuración de recursos específica en Azure.
+
+![](img/fig140.png){width="400"}
+:::
+
+::: {.column style="font-size:15px"}
+Está disponible gratuitamente; también puedes acceder a ella sin iniciar sesión en Azure. Le ayudará a estimar los costos individuales o de una combinación.
+
+La calculadora de precios también tiene escenarios de plantilla; por ejemplo:
+
+-   Puede estimar los costos de una configuración típica de análisis de big data.
+
+### Calculadora TCO
+
+TCO significa costo total de propiedad.
+
+![](img/fig141.png){width="400"}
+
+Es una forma integral de analizar los costos, incluidos los costos ocultos, como los costos operativos. La calculadora TCO le ayuda a comprender los costos de trasladar su infraestructura local con Azure Cloud comparando los costos TCO para ambos.
+
+Al igual que la *Calculadora de Precios*, esta herramienta también está disponible de forma gratuita.
+
+Generalmente se utiliza para respaldar y preparar la migración a Azure.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+### Gestión de costos
+
+La gestión de costos puede considerarse el eje central en Azure para todo lo relacionado con los costos.
+
+![](img/fig139.png){width="400"}
+
+Permite configurar presupuestos y alertas de costos, administrar la facturación, opciones y facturas, y exportar detalles de costos externamente usando una API.
+
+Para analizar los costos, dentro de la *Gestión de Costos* existe una herramienta específica: la `herramienta de Análisis de Costos`.
+
+### Herramienta de Analisis de Costos
+
+La herramienta de análisis de costos dentro de la plataforma de gestión de costos se utiliza principalmente para la exploración de costos ad hoc.
+
+Puede crear visualizaciones personalizadas y aplicar filtros, por ejemplo, para analizar y visualizar los costos del mes anterior de todos los recursos con una etiqueta de recursos específicos.
+
+Además, también puede crear pronósticos de costos basados en el historial de datos de costos disponibles.
+:::
+
+::: {.column style="font-size:15px"}
+![](img/fig142.png){width="500"}
+
+Para un análisis más avanzado, es posible exportar datos de costos a Power BI, el software de Business Intelligence de Microsoft.
+
+Volvamos a nuestro caso de uso anterior, donde necesitamos crear una nueva VM en Azure para nuestro proyecto de datos.
+
+Para estimar sus costos utilizaríamos la calculadora de precios.
+
+Azure también muestra el costo por mes como un recordatorio adicional cuando creamos el recurso. Una vez creada la VM, podemos realizar un seguimiento de los costos y el uso mediante la Gestión de Costos.
+:::
+:::::
+
+## Implementación de Gobernanza y Cumplimiento
+
+::::: columns
+::: {.column style="font-size:15px"}
+Aprenderemos cómo Azure ayuda en la implementación de gobernanza y cumplimiento.
+
+#### Portal de Confianza del Servicio
+
+Al utilizar Azure Cloud, Microsoft, como proveedor de la nube, también es responsable de garantizar que nuestros datos puedan almacenarse de forma segura en la nube.
+
+![](img/fig143.png){width="600"}
+
+El `Portal de Confianza del Servicio` sirve como un repositorio donde Microsoft detalla sus prácticas de seguridad, privacidad y cumplimiento.
+
+Además de documentar los propios controles y procesos de Microsoft para la protección de datos y la privacidad. Este portal proporciona recursos y documentación para que podamos gestionar el cumplimiento y la seguridad de los datos.
+:::
+
+::: {.column style="font-size:15px"}
+Esto incluye documentación sobre certificaciones específicas como ISO (Organización de Normalización Internacional) y GDPR (Reglamento General de Protección de Datos).
+
+#### Microsoft Purview
+
+Es un servicio integral de gestión de datos para Azure y otros productos de Microsoft.
+
+![](img/fig144.png){width="600"}
+
+Combina lo que anteriormente era Azure Purview y Microsoft 365 Compliance. El propósito de esta plataforma es ayudarlo a administrar activos de datos, específicamente seguridad de datos, gobernanza de datos, riesgo y cumplimiento de datos.
+
+Discutiremos algunos casos de uso específicos en la siguiente diapositiva.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+Microsoft Purview tiene caracterísiticas específicas para ayudarlo con las tareas comunes de `gobernanza de datos.`
+
+![](img/fig145.png){width="500"}
+
+El Catálogo de datos le permite mantener una visión general centralizada de todos los activos de datos y sus metadatos.
+
+El mapa de datos proporciona una representación visual de los flujos de datos a través de sistemas y aplicaciones que le permiten rastrear el origen y el destino de los datos.
+
+Microsoft Purview también ayuda con el etiquetado de datos, la clasificación y el enriquecimiento de metadatos.
+
+Por último, también admite la transferencia segura de datos y el uso compartido con otros usuarios de Azure.
+:::
+
+::: {.column style="font-size:15px"}
+#### Microsoft Purview: Administrador de cumplimiento
+
+Además de la gestión de activos de datos, también ofrece una herramienta para evaluación del cumplimiento de los activos de datos con regulaciones y estándares específicos: `Compliance Manager (Administrador de cumplimiento)`.
+
+![](img/fig146.png)
+
+El Administrador de Cumplimiento muestra un panel que revisa el cumplimiento actual, estado de todos los activos de datos y utiliza un sistema de puntuación para resumir el cumplimiento general.
+
+Para mejorar la puntuación y por tanto el cumplimiento, el Compliance Manager genera automáticamente recomendaciones específicas.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Caso de uso: Usando el portal de confianza del servicio
+
+Supongamos que usted es responsable de los datos personales de los clientes. De acuerdo con el RGDP, necesita saber cómo gestionar las solicitudes de los interesados. Es el derecho a que sus datos personales sean revisados, corregidos o eliminados.
+
+Puede utilizar el portal de confianza del servicio para consultar las normas y directrices específicas con respecto a los DSR en el RGDP.
+
+![](img/fig143.png){width="600"}
+
+Además, también puede encontrar orientación sobre cómo manejar dichas solicitudes, específicamente en Azure.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
+
+## Herramientas de Gobernanza y Cumplimiento
+
+::::: columns
+::: {.column style="font-size:15px"}
+En esta sección, analizaremos las herramientas de gobernanza y cumplimiento en Azure.
+
+Existen dos herramientas específicas en Azure que usarás mucho para gobernanza y cumplimiento:
+
+| Herramienta | Uso |
+|------------------------------------|------------------------------------|
+| Azure Policy | Se utiliza para aplicar estándares y mejores prácticas mediante la definición y aplicación de reglas y políticas a los recursos. |
+| Azure Blueprints | Se utiliza para estandarizar implementaciones y replicar configuraciones de entornos existentes. |
+
+Discutiremos ambas con más detalle.
+
+#### Azure Policy
+
+Como su nombre lo indica, se utiliza para establecer políticas, conjuntos específicos de reglas y estándares para recursos.
+
+![](img/fig147.png){width="500"}
+:::
+
+::: {.column style="font-size:15px"}
+Esto se hace para hacer cumplir el cumplimiento de las normas y regulaciones aplicables.
+
+Las reglas establecidas por Azure Policy se pueden establecer en cualquier nivel y ser heredadas automáticamente por los subniveles
+
+Por ejemplo, una política podría aplicarse a un recurso específico o a un grupo de recursos, por lo que nos nuevos recursos creados en este grupo asumirían automáticamente la misma política.
+
+`Azure Policy` no solo le permite establecer estas reglas, sino que también permite la corrección automática. Por ejemplo, si faltan las etiquetas de recursos necesarias, se pueden aplicar automáticamente.
+
+Normalmente, hay una multitud de conjuntos de reglas relacionadas que deben establecerse para cumplir con las regulaciones.
+
+### Azure Policy: Iniciativas
+
+Para ayudar con esto, las políticas de Azure se pueden agrupar en las denominadas *Iniciativas*.
+
+**Iniciativas:** son grupos de políticas relacionadas con un objetivo mayor.
+
+Estas iniciativas pueden ser definidas por el usuario, o los usuarios pueden hacer uso de ellas. Por ejemplo, Azure Policy tiene una iniciativa incorporada para el cumplimiento de HIPAA/HITRUST, la principal regulación estadounidense que protege los datos y la privacidad en la atención médica.
+
+Esta iniciativa contiene, entre otras, las siguientes políticas: multifactorial. La autenticación debe estar habilitada y debe haber más de un propietario asignado a una suscripción, y debería haber una verificación automática de los miembros que faltan en el grupo de Administradores.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+![](img/fig148.png){width="1000"}
+
+#### Azure Blueprints
+
+La segunda herramienta que encontrará mucho en el contexto de gobernanza y cumplimiento es Azure Blueprints.
+
+![](img/fig149.png)
+
+Esta herramienta le permite estandarizar nuevas suscripciones a la nube o la implementación de entornos de recursos.
+:::
+
+::: {.column style="font-size:15px"}
+Al hacerlo, Azure preserva el vínculo entre el plan original y los recursos implementados. En otras palabras, nos permite rastrear si lo que se implementó se ajusta a lo que debería haber implementado.
+
+Además, Azure Blueprints admite el control de versiones, lo que significa que se pueden realizar actualizaciones. Fácilmente rastreable o revertido, lo que garantiza la transparencia y respalda la recuperación en caso de problemas.
+
+Azure Blueprints consta de componentes, que se denominan artefactos en Azure.
+
+![](img/fig150.png){width="1000"}
+
+Estos contienen parámetros específicos que se pueden definir. Esta configuración se puede realizar directamente en el Blueprint para estandarización o en implementación si se requiere cierta flexibilidad, dependiendo de los requisitos para la implementación. Ejemplos de posibles artefactos son: asignaciones de roles, asignaciones de políticas, configuración de grupos de recursos o plantillas de recursos predefinidas.
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column style="font-size:15px"}
+#### Caso de uso: política de seguridad de red
+
+Seponga que es responsable de implementar las mejores prácticas para la seguridad de la red, como Deshabilitar el acceso público a internet según reglas específicas, como si el recurso es sensible o no.
+
+-   Con Azure Policy, puede implementar un conjunto de reglas que bloqueen o restrinjan el acceso público a internet. Para ello, puede buscar las definiciones de políticas integradas para comenzar y personalizar la política como desee.
+
+-   Además, puede inlcuir la política como un artefacto en un plan de Azure para que las nuevas implementaciones implementen automáticamente las reglas de seguridad de la red sin tener que configurarlas desde cero.
+:::
+
+::: {.column style="font-size:15px"}
+:::
+:::::
